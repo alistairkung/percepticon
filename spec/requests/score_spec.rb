@@ -5,7 +5,7 @@ RSpec.describe 'Percepticon API', type: :request do
 
   describe 'GET /scores/new' do
     it 'returns a JSON object with vectors' do
-      get '/scores/new'
+      get "/scores/new/?title=#{headline}"
       json = JSON.parse(response.body)
 
       expect(response).to be_success
