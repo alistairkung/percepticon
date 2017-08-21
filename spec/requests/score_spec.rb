@@ -20,8 +20,10 @@ RSpec.describe 'Percepticon API', type: :request do
         get "/scores/new?title=#{invalid_headline}"
         json = JSON.parse(response.body)
 
-        expect(json['status']).to be("error")
-        expect(json['message']).to be("invalid query string")
+        expect(json['status']).to eq ("error")
+        # needs to be completed
+        # expect(response).to have_http_status(422)
+        expect(json['message']).to eq("invalid query string")
       end
     end
   end
