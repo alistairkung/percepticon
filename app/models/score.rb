@@ -1,3 +1,5 @@
+require_dependency '../../lib/perceptron'
+
 class Score < ApplicationRecord
   include ScoreHelper
   MULTIPLIER = 1
