@@ -9,7 +9,7 @@ RSpec.describe 'Percepticon API', type: :request do
       json = JSON.parse(response.body)
 
       expect(response).to be_success
-      expect(json['score']).to be(1)
+      expect(json['result']).to be(1)
     end
   end
 end
