@@ -1,13 +1,15 @@
 language: ruby
-
-rvm: '2.4.0'
-
+rvm: 2.4.0
 script:
-  - mkdir -p spec && bundle exec rspec spec
-
+- mkdir -p spec && bundle exec rspec spec
 before_install:
-  - sudo apt-get update -qq
-  - sudo apt-get install -qq postgresql-server-dev-9.3
-
+- sudo apt-get update -qq
+- sudo apt-get install -qq postgresql-server-dev-9.3
 before_script:
-  - psql -c 'create database percepticon_test;' -U postgres
+- psql -c 'create database percepticon_test;' -U postgres
+deploy:
+  provider: heroku
+  api_key:
+    secure: PakyB/0GzRXGAxSj67InjEKq8B/x33QSm6bi/aZgWGmqzGBbFOldOrkrjg0Czy3dQS5ghjp8DCnjOUFjj3soojPeMFUb8rWyfm45MmOAxtlW8JbO2CzNMKGJ9JdA+oO1m1E4GB8Lbki4IpftXgC1p72EwPjuQaSxY8qt0YSRTeoMeXNwR2qgk0ZgcHKX2bcAN4XzKByotUQJn+BakM0JrWI7Pp1ZJ0jL/h8oLQdm0Jow2B957zfbneptTI88683iH0MdvRBKWPJ+VdgUlTF6P1AOKOnqx4IXIhzN+5CnQhoEqwszV5Enp7JYkpsyHSM3C+hptZPgRYB88uA2eYHRNQg3BB1SWVUtqi92JffExhqf77yz85gE82Lt6UZEkEu5wnL/31gzuA0M46bZFQxbB7Q20Ob4wRveZKCOxikA548d+wdKPwvVRodYFmcMQ/gYje9528UkPwt+4fhHs70/45n7l1C8MrI8NgBYPQDz5YjeileBgQgpuRtazYE2nbvFUkDZXD2DJJ3/V+2ShTAJ0r8CZ8xIfSiwqTqOQg1GG0+8S6g7MfheT7a9b9Ji6vucHjDuBd6kbqklTyOGn8sirB7ANggIGS1Yt8ZHU84TgyFs1QHOAP1rbsH3PqQlRRV6hGlXVdhMdo05HWQuhjbGJc3mPNcGt5IiCZA+TRQPAws=
+  run:
+    - "rake db:migrate"
