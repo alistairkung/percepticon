@@ -1,4 +1,5 @@
 class Score < ApplicationRecord
+  include ScoreHelper
   MULTIPLIER = 1
   STARTING_PRONOUNS = [
     'He', 'She', 'I', 'It', 'You', 'My', "It's", 'They', "They'll", "He'll",
@@ -18,6 +19,7 @@ class Score < ApplicationRecord
   ].freeze
 
   def parse(score_params)
+    raise "invalid query string" unless verify_params(score_params["title"])
     update_attributes(vector: create_vector(score_params['title']))
     update_attributes(result: 1) # TODO: Perceptron predict method called here
   end
