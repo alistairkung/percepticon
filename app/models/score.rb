@@ -5,24 +5,29 @@ class Score < ApplicationRecord
 
   MULTIPLIER = 1
   STARTING_PRONOUNS = [
-    'He', 'She', 'I', 'It', 'You', 'My', "It's", 'They', "They'll", "He'll",
-    "She'll", "You'll"
+    "he", "she", "i", "it", "you", "my", "it's", "they",
+    "they'll", "he'll", "she'll", "you'll", "here's", "this", "people",
+    "how", "why", "memes"
   ].freeze
 
   KEY_WORDS = [
-    'sex', 'things', 'number', "you'll", 'these', 'believe', 'tips',
-    'tweets', 'never', 'photos', 'photo', 'best', 'make', 'just'
+    "sex", "things", "number", "these", "believe", "tips", "tweets",
+    "never", "photos", "photo", "best", "make", "just", "kardashian",
+    "jenner", "memes", "people", "times", "worst", "questions", "never",
+    "know", "this", "what", "ways"
   ].freeze
 
   KEY_PHRASES = [
-    "here's why", "here's what", "you'll never", 'that will', 'this is',
-    'how to', 'the most', 'what this', 'when you', "and it's",
-    'wait till', 'this guy', 'blow your', 'the reason', 'make you',
-    'looks like', 'pictures of'
+    "here's why", "here's what", "you'll never", "that will", "this is", "how to",
+    "the most", "what this", "when you", "and it's", "and we'll", "wait till",
+    "this guy", "blow your", "the reason", "make you", "looks like", "pictures of",
+    "the internet", "can you", "you didn't", "you need", "here's how", "it looks",
+    "will make"
   ].freeze
 
   KEY_PRONOUNS = [
-    "i", "he", "she", "you", "my", "you'll", "me", "yours", "your", "you're", "mine", "their"
+    "i", "he", "she", "you", "my", "you'll", "me", "yours", "your", "you're",
+    "mine", "their"
   ].freeze
 
   def parse(score_params)
@@ -40,7 +45,7 @@ class Score < ApplicationRecord
       first_word(headline),
       key_words(headline),
       number_occurences(headline),
-      key_phrases(headline),
+      key_phrases(headline) + the_and_number(headline),
       key_pronouns(headline)
     ]
   end

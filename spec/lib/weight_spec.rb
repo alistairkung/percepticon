@@ -6,11 +6,11 @@ describe Weight do
 
   describe "Initialisation" do
     it "creates a vector of n+1 size" do
-      expect(weight.vector.size).to eq 4
+      expect(weight.vector.size).to eq described_class::TRAINED_WEIGHTS.length + 1
     end
 
     it "generates BIAS value" do
-      expect(weight.vector[0]).to eq Weight::INITIAL_BIAS
+      expect(weight.vector[0]).to eq described_class::INITIAL_BIAS
     end
   end
 
