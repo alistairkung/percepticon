@@ -3,7 +3,6 @@ require_relative 'weight'
 
 class Perceptron
 
-
   def initialize(features_number, weight = Weight.new(features_number))
     @weight = weight
   end

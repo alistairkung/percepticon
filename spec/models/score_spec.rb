@@ -1,10 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe Score, type: :model do
-  let(:subject)      { described_class.new }
-  let(:score_params) { { 'title' => 'test headline' } }
-  let(:invalid_input) { {'title' => nil }}
-  let(:output)       { %w[1 0 0 0] }
+  let(:subject)       { described_class.new }
+  let(:score_params)  { { 'title' => 'test headline' } }
+  let(:invalid_input) { {'title' => nil } }
+  let(:output)        { %w[1 0 0 0] }
 
   it { is_expected.to have_db_column :vector }
   it { is_expected.to have_db_column :expected }
@@ -33,6 +33,11 @@ RSpec.describe Score, type: :model do
 
       it 'saves the result' do
         expect { subject.parse(score_params) }.to change { Score.count }.by 1
+      end
+
+      it 'scores the headline' do
+        subject.parse(score_params)
+        expect(subject.result).to eq 0
       end
     end
 
