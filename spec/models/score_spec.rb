@@ -4,7 +4,7 @@ RSpec.describe Score, type: :model do
   let(:subject)       { described_class.new }
   let(:score_params)  { { 'title' => 'test headline' } }
   let(:invalid_input) { {'title' => nil } }
-  let(:output)        { %w[1 0 0 0] }
+  let(:output)        { %w[1 0 0 0 0 0] }
 
   it { is_expected.to have_db_column :vector }
   it { is_expected.to have_db_column :expected }
