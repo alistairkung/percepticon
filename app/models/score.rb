@@ -1,5 +1,8 @@
+require_dependency 'perceptron'
+
 class Score < ApplicationRecord
   include ScoreHelper
+
   MULTIPLIER = 1
   STARTING_PRONOUNS = [
     'He', 'She', 'I', 'It', 'You', 'My', "It's", 'They', "They'll", "He'll",
@@ -20,8 +23,9 @@ class Score < ApplicationRecord
 
   def parse(score_params)
     raise "invalid query string" unless verify_params(score_params["title"])
-    update_attributes(vector: create_vector(score_params['title']))
-    update_attributes(result: 1) # TODO: Perceptron predict method called here
+    vector = create_vector(score_params['title'])
+    update_attributes(vector: vector)
+    update_attributes(result: predict(Vector[*vector]))
   end
 
   private
@@ -49,5 +53,10 @@ class Score < ApplicationRecord
 
   def number_occurences(headline)
     headline.scan(/\d+/).count
+  end
+
+  def predict(vector)
+    perceptron = Perceptron.new(3)
+    perceptron.predict(vector)
   end
 end

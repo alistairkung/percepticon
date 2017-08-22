@@ -6,7 +6,7 @@ class ScoresController < ApplicationController
       @score.parse(score_params)
       render json: @score, status: :ok
     else
-      render json: {message: "invalid query string", status: "error", code: 422} 
+      render json: { message: "invalid query string", status: "error", code: 422 } 
     end
   end
 
