@@ -29,33 +29,32 @@ module MachineLearningHelper
   def create_vector(headline)
     [
       MULTIPLIER,
-      first_word(headline),
-      key_words(headline),
-      number_occurences(headline),
-      key_phrases(headline) + the_and_number(headline),
-      key_pronouns(headline)
+      check_first_word(headline),
+      count_key_words(headline),
+      count_number_occurences(headline),
+      count_key_phrases(headline) + count_the_number_occurences(headline),
+      count_key_pronouns(headline)
     ]
   end
 
-  def first_word(headline)
-    STARTING_PRONOUNS.inject(0) { |r, w| headline.downcase.split(" ")[0].to_i != 0 &&
-    headline.downcase.split(" ")[0].to_i < 50 &&
-    r == 0 || headline.downcase.split(' ')[0] == w ? r + 1 : r }
+  def check_first_word(headline)
+    STARTING_PRONOUNS.inject(0) { |r, word| is_small_number?(headline.split(" ")) &&
+      r == 0 || headline.split(' ')[0] == word ? r + 1 : r }
   end
 
-  def key_words(headline)
-    KEY_WORDS.inject(0) { |r, word| headline.downcase.split(" ").include?(word) ? r + 1 : r }
+  def count_key_words(headline)
+    KEY_WORDS.inject(0) { |r, word| headline.split(" ").include?(word) ? r + 1 : r }
   end
 
-  def key_phrases(headline)
-    KEY_PHRASES.inject(0) { |r, phrase| headline.downcase.split(" ").include?(phrase) ? r + 1 : r }
+  def count_key_phrases(headline)
+    KEY_PHRASES.inject(0) { |r, phrase| headline.split(" ").include?(phrase) ? r + 1 : r }
   end
 
-  def key_pronouns(headline)
-    KEY_PRONOUNS.reduce(0) { |r, word| headline.downcase.split(" ").include?(word) ? r + 1 : r }
+  def count_key_pronouns(headline)
+    KEY_PRONOUNS.reduce(0) { |r, word| headline.split(" ").include?(word) ? r + 1 : r }
   end
 
-  def number_occurences(headline)
+  def count_number_occurences(headline)
     headline.scan(/\d+/).count
   end
 
@@ -63,8 +62,12 @@ module MachineLearningHelper
     /\A[-+]?\d+\z/ === string
   end
 
-  def the_and_number(headline)
-    the_arr = headline.downcase.split(" ").each_index.select{|i| headline.downcase.split(" ")[i] == 'the'}
-    the_arr.inject(0){|r, item| is_i?(headline.downcase.split(" ")[item + 1]) ? r + 1 : r }
+  def count_the_number_occurences(headline)
+    the_arr = headline.split(" ").each_index.select { |i| headline.split(" ")[i] == 'the' }
+    the_arr.inject(0) { |r, item| is_i?(headline.split(" ")[item + 1]) ? r + 1 : r }
+  end
+
+  def is_small_number?(string)
+    string[0].to_i != 0 && string[0].to_i < 50
   end
 end
