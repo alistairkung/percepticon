@@ -2,7 +2,7 @@ require_dependency 'perceptron'
 
 class Score < ApplicationRecord
   include ScoreHelper
-  include MachineLearningHelper
+  include ParsingHelper
 
   def parse(score_params)
     raise "invalid query string" unless valid_title?(score_params["title"])

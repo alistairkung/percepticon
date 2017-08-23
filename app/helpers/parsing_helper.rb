@@ -1,4 +1,4 @@
-module MachineLearningHelper
+module ParsingHelper
   MULTIPLIER = 1
   STARTING_PRONOUNS = [
     "he", "she", "i", "it", "you", "my", "it's", "they",
