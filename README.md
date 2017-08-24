@@ -5,7 +5,8 @@
 Send an article headline found on the Internet and THE PERCEPTICON will tell you if it's good or bad journalism!
 
 [Check out the Frontend demo for a demonstration](http://www.github.com/tbscanlon/percepticon-frontend)
-[Try the API!](https://percepticon.herokuapp.com/scpres/new?title="22 Weird Pictures of Kim Kardashian that Broke the Internet")
+
+[Try the API!](https://percepticon.herokuapp.com/scores/new?title=22 Weird Pictures of Kim Kardashian that Broke the Internet)
 
 This was created as part of the final project at [Makers Academy](www.makersacademy.com). It is a sample implementation of a (pre-taught) Perceptron algorithm that's accessible using a HTTP GET request.
 
