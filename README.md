@@ -4,7 +4,7 @@
 
 Send an article headline found on the Internet and THE PERCEPTICON will tell you if it's good or bad journalism!
 
-[The API is live here](https://perceptron.herokuapp.com) - it's an API only Rails project so there's now views. See the front-end demo for instructions on how to use it.
+[The API is live here](https://perceptron.herokuapp.com) - it's an API only Rails project so there's no views. See the front-end demo for instructions on how to use it.
 
 [Check out the Frontend demo for a demonstration](http://www.github.com/tbscanlon/percepticon-frontend)
 
